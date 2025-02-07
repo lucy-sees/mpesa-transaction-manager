@@ -12,3 +12,23 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model C2BPayment {
+  id           Int        @id @default(autoincrement())
+  transactionId String     @unique
+  amount       Float
+  phoneNumber  String
+  receiptNumber String?
+  createdAt    DateTime   @default(now())
+}
+
+model STKPayment {
+  id           Int        @id @default(autoincrement())
+  merchantRequestID String @unique
+  checkoutRequestID String @unique
+  amount       Float
+  phoneNumber  String
+  resultCode   Int
+  resultDesc   String
+  createdAt    DateTime   @default(now())
+}
